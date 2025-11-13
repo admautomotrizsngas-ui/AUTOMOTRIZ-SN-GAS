@@ -230,6 +230,70 @@
             }
         }
 
+        /* --- Modal de Servicios --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1565c0, #0d47a1);
+            color: #fff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .modal-close:hover {
+            transform: scale(1.2);
+        }
+
+        #modal-title {
+            font-size: 28px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        #modal-description {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
         /* Franja corrediza de promociones */
         .ticker-wrap {
             position: sticky; /* Se pega en la parte superior al hacer scroll */
@@ -270,7 +334,7 @@
 <body>
     <div class="ticker-wrap">
         <div class="ticker-content">
-            <span>Nuestros Horarios: Lunes a Viernes de 9:00 a 18:00 hs | Sábados de 9:00 a 13:00 hs.</span>
+            <span>Nuestros Horarios: Lunes a Viernes de 8:30 am a 6:00 pm | Sábados de 8:30 am a 1:00 pm.</span>
             <span><i class="fas fa-star"></i> ¡PROMOCIÓN DEL MES! 20% de descuento en Sistema de Frenos.</span>
             <span>Nuestros Horarios: Lunes a Viernes de 9:00 a 18:00 hs | Sábados de 9:00 a 13:00 hs.</span>
             <span><i class="fas fa-star"></i> ¡PROMOCIÓN DEL MES! 20% de descuento en Sistema de Frenos.</span>
@@ -330,16 +394,16 @@
 
             <!-- Fila 2 - 5 botones abajo -->
             <div class="services-row">
-                <button class="service-btn" onclick="selectService('Transmisión')">
-                    <i class="fas fa-cog"></i>
-                    Transmisión
-                    <span>Cajas automáticas y manuales</span>
+                <button class="service-btn" onclick="selectService('Revisión de Frenos')">
+                    <i class="fas fa-compact-disc"></i> <!-- Icono que simula un disco de freno -->
+                    Revisión de Frenos
+                    <span>Inspección y cambio de pastillas</span>
                 </button>
 
-                <button class="service-btn" onclick="selectService('Electricidad')">
-                    <i class="fas fa-bolt"></i>
-                    Sistema Eléctrico
-                    <span>Batería, alternador y más</span>
+                <button class="service-btn" onclick="selectService('Limpieza de inyectores de gasolina')">
+                    <i class="fas fa-syringe"></i> <!-- Icono que se asemeja a un inyector -->
+                    Limpieza de inyectores de gasolina
+                    <span>Mejora el rendimiento y consumo</span>
                 </button>
 
                 <button class="service-btn" onclick="selectService('Cambio de Aceite')">
@@ -381,16 +445,57 @@
         </footer>
     </div>
 
+    <!-- Modal para detalles de servicio -->
+    <div id="service-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
     <!-- Botón flotante de WhatsApp -->
     <a href="https://wa.me/51914756641?text=Hola!%20Estoy%20interesado%20en%20sus%20servicios." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        function selectService(service) {
-            alert(`Has seleccionado: ${service}\n\nPróximamente serás contactado para agendar tu cita.`);
-            // Aquí podrías redirigir a un formulario de contacto o abrir un modal
+        // --- Lógica del Modal de Servicios ---
+
+        const serviceDetails = {
+            'Mantenimiento GLP / GNV': 'Realizamos un chequeo completo de tu sistema de gas, incluyendo limpieza de componentes, verificación de fugas y ajuste de parámetros para garantizar un funcionamiento seguro y eficiente.',
+            'Regulación GLP / GNV': 'Utilizamos software especializado para regular la mezcla de aire y gas, optimizando el consumo de combustible y mejorando la potencia y respuesta de tu vehículo.',
+            'Scaneo': 'Con nuestros scanners de última generación, diagnosticamos con precisión cualquier falla electrónica en el sistema de gas, motor, ABS, airbags y otros módulos del vehículo.',
+            'Certificación Anual': 'Inspeccionamos tu vehículo a gas para asegurar que cumple con todas las normativas de seguridad vigentes y emitimos el certificado anual obligatorio para que puedas circular sin problemas.',
+            'Prueba Quinquenal': 'Realizamos la prueba hidrostática del tanque de gas (prueba quinquenal), un requisito indispensable cada 5 años para verificar la integridad y seguridad del cilindro.',
+            'Revisión de Frenos': 'Inspeccionamos y damos mantenimiento a todo el sistema de frenos: cambio de pastillas, discos, zapatas y líquido de frenos para garantizar tu seguridad en el camino.',
+            'Limpieza de inyectores de gasolina': 'Mediante ultrasonido, limpiamos los inyectores de gasolina para restaurar el patrón de pulverización correcto, mejorando el rendimiento del motor y reduciendo el consumo.',
+            'Cambio de Aceite': 'Realizamos el cambio de aceite y filtro utilizando productos de alta calidad que cumplen con las especificaciones de tu vehículo, alargando la vida útil del motor.',
+            'Diagnóstico Computarizado': 'Conectamos tu vehículo a nuestros equipos de diagnóstico para leer códigos de falla, analizar datos en tiempo real y encontrar el origen de cualquier problema mecánico o electrónico.',
+            'Service Programado': 'Seguimos las pautas del fabricante para realizar el mantenimiento programado de tu vehículo, asegurando que todos los componentes funcionen correctamente y previniendo averías costosas.'
+        };
+
+        const modal = document.getElementById('service-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const closeModalBtn = document.querySelector('.modal-close');
+
+        function selectService(serviceName) {
+            modalTitle.textContent = serviceName;
+            modalDescription.textContent = serviceDetails[serviceName] || 'Descripción no disponible.';
+            modal.classList.add('active');
         }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
 
         // Efecto de escritura para el título
         document.addEventListener('DOMContentLoaded', function() {
@@ -409,6 +514,7 @@
             
             setTimeout(typeWriter, 500);
         });
+
     </script>
 </body>
 </html>

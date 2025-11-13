@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automotriz SNGAS - Servicios Mecánicos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Header --- */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative; /* Necesario para posicionar el botón de registro */
+        }
+
+        .header-content {
+            padding-bottom: 20px; /* Espacio para el botón de registro debajo */
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            font-size: 48px;
+            color: #4CAF50; /* Verde */
+            margin-right: 15px;
+        }
+
+        h1 {
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #4CAF50; /* Verde */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #ecf0f1;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1622737133809-d95047b9e673?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-text {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-text h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #4CAF50; /* Verde */
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            max-width: 600px;
+        }
+
+        .services-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .services-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .service-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); /* Gradiente Verde */
+            border: none;
+            border-radius: 12px;
+            padding: 25px 15px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            min-height: 160px;
+            width: 100%;
+        }
+
+        .service-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #66BB6A 0%, #4CAF50 100%);
+        }
+
+        .service-btn i {
+            font-size: 35px;
+            margin-bottom: 12px;
+            color: #FFC107; /* Amarillo */
+        }
+
+        .service-btn span {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Botón flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilos para pantallas más pequeñas */
+        @media (max-width: 1024px) {
+            .services-row {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            
+            .hero-text h2 {
+                font-size: 28px;
+            }
+            
+            .services-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-btn {
+                padding: 20px 10px;
+                min-height: 140px;
+            }
+        }
+
+        /* Franja corrediza de promociones */
+        .ticker-wrap {
+            position: sticky; /* Se pega en la parte superior al hacer scroll */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #4CAF50; /* Verde */
+            color: #fff;
+            padding: 12px 0;
+            overflow: hidden; /* Oculta el texto que sale del contenedor */
+            white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+            z-index: 1001; /* Asegura que esté por encima de otros elementos */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+            font-weight: 500;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            padding-left: 100%; /* Inicia el contenido fuera de la pantalla (a la derecha) */
+            animation: ticker-scroll 30s linear infinite; /* Aplica la animación */
+        }
+
+        .ticker-content span {
+            padding: 0 2rem; /* Espacio entre los mensajes */
+        }
+
+        @keyframes ticker-scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%); /* Mueve el contenido completamente hacia la izquierda */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="ticker-wrap">
+        <div class="ticker-content">
+            <span>Nuestros Horarios: Lunes a Viernes de 9:00 a 18:00 hs | Sábados de 9:00 a 13:00 hs.</span>
+            <span><i class="fas fa-star"></i> ¡PROMOCIÓN DEL MES! 20% de descuento en Sistema de Frenos.</span>
+            <span>Nuestros Horarios: Lunes a Viernes de 9:00 a 18:00 hs | Sábados de 9:00 a 13:00 hs.</span>
+            <span><i class="fas fa-star"></i> ¡PROMOCIÓN DEL MES! 20% de descuento en Sistema de Frenos.</span>
+        </div>
+    </div>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-tools logo-icon"></i>
+                    <h1>Automotriz SNGAS</h1>
+                </div>
+                <p class="tagline">Expertos en mecánica automotriz con más de 15 años de experiencia</p>
+            </div>
+        </header>
+
+        <div class="hero-image">
+            <div class="hero-text">
+                <h2>Servicios de Mecánica Profesional</h2>
+                <p>Tu vehículo en las mejores manos. Calidad, confianza y garantía en todos nuestros servicios.</p>
+            </div>
+        </div>
+
+        <div class="services-container">
+            <!-- Fila 1 - 5 botones arriba -->
+            <div class="services-row">
+                <button class="service-btn" onclick="selectService('Mantenimiento GLP / GNV')">
+                    <i class="fas fa-gas-pump"></i>
+                    Mantenimiento GLP / GNV
+                    <span>Conversión y mantenimiento de sistemas a gas</span>
+                </button>
+
+                <button class="service-btn" onclick="selectService('Regulación GLP / GNV')">
+                    <i class="fas fa-laptop"></i>
+                    Regulación GLP / GNV
+                    <span>Ajuste fino para un rendimiento óptimo</span>
+                </button>
+
+                <button class="service-btn" onclick="selectService('Scaneo')">
+                    <i class="fas fa-tablet-alt"></i>
+                    Scaneo
+                    <span>Detección de fallas con scanner</span>
+                </button>
+
+                <button class="service-btn" onclick="selectService('Certificación Anual')">
+                    <i class="fas fa-file-alt"></i>
+                    Certificación Anual
+                    <span>Revisión y aprobación para tu vehículo a gas</span>
+                </button>
+
+                <button class="service-btn" onclick="selectService('Prueba Quinquenal')">
+                    <i class="fas fa-database"></i>
+                    Prueba Quinquenal
+                    <span>Prueba de seguridad y hermeticidad cada 5 años</span>
+                </button>
+            </div>
+
+            <!-- Fila 2 - 5 botones abajo -->
+            <div class="services-row">
+                <button class="service-btn" onclick="selectService('Transmisión')">
+                    <i class="fas fa-cog"></i>
+                    Transmisión
+                    <span>Cajas automáticas y manuales</span>
+                </button>
+
+                <button class="service-btn" onclick="selectService('Electricidad')">
+                    <i class="fas fa-bolt"></i>
+                    Sistema Eléctrico
+                    <span>Batería, alternador y más</span>
+                </button>
+
+                <button class="service-btn" onclick="selectService('Cambio de Aceite')">
+                    <i class="fas fa-oil-can"></i>
+                    Cambio de Aceite
+                    <span>Mantenimiento preventivo para tu motor</span>
+                </button>
+
+                <button class="service-btn" onclick="selectService('Diagnóstico Computarizado')">
+                    <i class="fas fa-laptop-medical"></i>
+                    Diagnóstico Computarizado
+                    <span>Tecnología de vanguardia</span>
+                </button>
+
+                <button class="service-btn" onclick="selectService('Service Programado')">
+                    <i class="fas fa-calendar-check"></i>
+                    Service Programado
+                    <span>Mantenimiento según fabricante</span>
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <p>Automotriz SNGAS &copy; 2023 - Confianza sobre ruedas</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Av. Principal #123, Ciudad</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>(123) 456-7890</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@automotrizsngas.com</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/1234567890?text=Hola!%20Estoy%20interesado%20en%20sus%20servicios." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function selectService(service) {
+            alert(`Has seleccionado: ${service}\n\nPróximamente serás contactado para agendar tu cita.`);
+            // Aquí podrías redirigir a un formulario de contacto o abrir un modal
+        }
+
+        // Efecto de escritura para el título
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.querySelector('h1');
+            const text = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    title.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+            
+            setTimeout(typeWriter, 500);
+        });
+    </script>
+</body>
+</html>

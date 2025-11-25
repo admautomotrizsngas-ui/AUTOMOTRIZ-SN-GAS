@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio de Placas - SN'GAS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #4CAF50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #ecf0f1;
+            margin-top: 10px;
+        }
+
+        /* --- Barra de Búsqueda --- */
+        .search-container {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box i {
+            font-size: 20px;
+            color: #FFC107;
+            margin-right: 10px;
+        }
+
+        .search-input-wrapper {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 5px 15px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 15px 10px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 18px;
+            outline: none;
+        }
+
+        #searchInput::placeholder {
+            color: #bdc3c7;
+        }
+
+        .search-btn {
+            background: #FFC107;
+            color: #0d47a1;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #ffca28;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            background: #FFC107;
+            color: #0d47a1;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        .back-home-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <style>
+        .quick-access-container {
+            text-align: center;
+            display: flex; /* Para poner botones uno al lado del otro */
+            justify-content: center; /* Centra los botones */
+            gap: 15px; /* Espacio entre botones */
+            flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea */
+            margin-top: 20px;
+        }
+        .quick-access-btn {
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            /* Estilos para centrar el contenido */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .quick-access-btn.hidden {
+            display: none; /* Clase para ocultar botones que no coinciden */
+        }
+        .quick-access-btn .placa {
+            font-size: 14px;
+        }
+        .quick-access-btn:hover { background: #66BB6A; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Directorio de Placas</h1>
+            <p class="tagline">Encuentra rápidamente la información de un vehículo.</p>
+        </header>
+
+        <div class="search-container">
+            <form id="socioSearchForm" class="search-box">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar por placa, nombre o socio..." required>
+                </div>
+                <button type="submit" class="search-btn">Buscar</button>
+            </form>
+        </div>
+
+        <div class="quick-access-container">
+             <button class="quick-access-btn" onclick="window.location.href='B3Y-611.html'" data-search="B3Y-611 CARLOS SOLIS 101">
+                <i class="fas fa-star"></i>
+                <span class="placa">B3Y-611</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='ABC-123.html'" data-search="ABC-123 ANA FUENTES 102">
+                <i class="fas fa-star"></i>
+                <span class="placa">ABC-123</span>
+            </button>
+            <!-- 20 nuevas opciones -->
+            <button class="quick-access-btn" onclick="window.location.href='F8L-492.html'" data-search="F8L-492 LUIS ROJAS 201">
+                <i class="fas fa-star"></i>
+                <span class="placa">F8L-492</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='G2P-715.html'" data-search="G2P-715 MARIA GOMEZ 202">
+                <i class="fas fa-star"></i>
+                <span class="placa">G2P-715</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='K9R-301.html'" data-search="K9R-301 PEDRO CASTRO 203">
+                <i class="fas fa-star"></i>
+                <span class="placa">K9R-301</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='M4S-882.html'" data-search="M4S-882 SOFIA DIAZ 204">
+                <i class="fas fa-star"></i>
+                <span class="placa">M4S-882</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='N1T-654.html'" data-search="N1T-654 JAVIER LUNA 205">
+                <i class="fas fa-star"></i>
+                <span class="placa">N1T-654</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='P6V-123.html'" data-search="P6V-123 LAURA TORRES 206">
+                <i class="fas fa-star"></i>
+                <span class="placa">P6V-123</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='Q3W-987.html'" data-search="Q3W-987 DIEGO VERA 207">
+                <i class="fas fa-star"></i>
+                <span class="placa">Q3W-987</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='R8X-456.html'" data-search="R8X-456 CARMEN RUIZ 208">
+                <i class="fas fa-star"></i>
+                <span class="placa">R8X-456</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='S5Y-789.html'" data-search="S5Y-789 JORGE SANTOS 209">
+                <i class="fas fa-star"></i>
+                <span class="placa">S5Y-789</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='T2Z-012.html'" data-search="T2Z-012 ELENA FLORES 210">
+                <i class="fas fa-star"></i>
+                <span class="placa">T2Z-012</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='V7A-345.html'" data-search="V7A-345 RICARDO PEÑA 211">
+                <i class="fas fa-star"></i>
+                <span class="placa">V7A-345</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='W4B-678.html'" data-search="W4B-678 MONICA SALAS 212">
+                <i class="fas fa-star"></i>
+                <span class="placa">W4B-678</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='X9C-901.html'" data-search="X9C-901 FERNANDO GIL 213">
+                <i class="fas fa-star"></i>
+                <span class="placa">X9C-901</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='Y1D-234.html'" data-search="Y1D-234 ROSA MENDOZA 214">
+                <i class="fas fa-star"></i>
+                <span class="placa">Y1D-234</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='Z6E-567.html'" data-search="Z6E-567 HECTOR RIOS 215">
+                <i class="fas fa-star"></i>
+                <span class="placa">Z6E-567</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='A3F-890.html'" data-search="A3F-890 IRENE SOTO 216">
+                <i class="fas fa-star"></i>
+                <span class="placa">A3F-890</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='B8G-123.html'" data-search="B8G-123 OSCAR VEGA 217">
+                <i class="fas fa-star"></i>
+                <span class="placa">B8G-123</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='C5H-456.html'" data-search="C5H-456 SILVIA CRUZ 218">
+                <i class="fas fa-star"></i>
+                <span class="placa">C5H-456</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='D2J-789.html'" data-search="D2J-789 DANIEL MORA 219">
+                <i class="fas fa-star"></i>
+                <span class="placa">D2J-789</span>
+            </button>
+            <button class="quick-access-btn" onclick="window.location.href='E7K-012.html'" data-search="E7K-012 GLORIA REYES 220">
+                <i class="fas fa-star"></i>
+                <span class="placa">E7K-012</span>
+            </button>
+        </div>
+
+        <footer>
+            <a href="index.html" class="back-home-btn"><i class="fas fa-arrow-left"></i> Volver a la pagina inicio</a>
+        </footer>
+    </div>
+
+    <script>
+        const searchForm = document.getElementById('socioSearchForm');
+        const searchInput = document.getElementById('searchInput');
+        const partnerButtons = document.querySelectorAll('.quick-access-btn');
+
+        function filterPartners() {
+            const searchTerm = searchInput.value.trim().toUpperCase();
+
+            partnerButtons.forEach(button => {
+                const buttonData = button.getAttribute('data-search').toUpperCase();
+                
+                if (buttonData.includes(searchTerm)) {
+                    button.classList.remove('hidden');
+                } else {
+                    button.classList.add('hidden');
+                }
+            });
+        }
+
+        // Filtrar en tiempo real mientras se escribe
+        searchInput.addEventListener('input', filterPartners);
+
+        // Evitar que el formulario recargue la página al presionar Enter
+        searchForm.addEventListener('submit', (event) => event.preventDefault());
+
+        // Al cargar la página, revisa si viene una placa en la URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const placa = urlParams.get('placa');
+            if (placa) {
+                searchInput.value = placa;
+                filterPartners(); // Filtra automáticamente al cargar
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Socio - SN'GAS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .info-item {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .info-item .label {
+            font-weight: 300;
+            color: #FFC107;
+        }
+        .info-item .value {
+            font-weight: 600;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            background: #FFC107;
+            color: #0d47a1;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="info-item">
+            <span class="label">Placa:</span>
+            <span class="value">F8L-492</span>
+        </div>
+        <div class="info-item">
+            <span class="label">Nombre:</span>
+            <span class="value">Luis Rojas</span>
+        </div>
+        <div class="info-item">
+            <span class="label">Número de Socio:</span>
+            <span class="value">201</span>
+        </div>
+        <div class="info-item">
+            <span class="label">Monegas:</span>
+            <span class="value">S/ 20.00</span>
+        </div>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Volver a la pagina inicio
+        </a>
+    </div>
+</body>
+</html>

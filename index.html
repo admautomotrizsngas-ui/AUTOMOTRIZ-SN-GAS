@@ -414,7 +414,7 @@
         <div class="ticker-content">
             <span>Nuestros Horarios: Lunes a Viernes de 8:30 am a 6:00 pm | Sábados de 8:30 am a 1:00 pm.</span>
             <span><i class="fas fa-star"></i> ¡PROMOCIÓN DEL MES! 20% de descuento en Sistema de Frenos.</span>
-            <span>Nuestros Horarios: Lunes a Viernes de 9:00 a 18:00 hs | Sábados de 9:00 a 13:00 hs.</span>
+            <span>Nuestros Horarios: Lunes a Viernes de 8:30 am a 6:00 pm | Sábados de 8:30 am a 1:00 pm.</span>
             <span><i class="fas fa-star"></i> ¡PROMOCIÓN DEL MES! 20% de descuento en Sistema de Frenos.</span>
         </div>
     </div>
@@ -530,6 +530,12 @@
                     Análisis de Gases
                     <span>Medición de emisiones contaminantes</span>
                 </button>
+
+                <button class="service-btn" onclick="selectService('Chip por Deterioro')">
+                    <i class="fas fa-microchip"></i>
+                    Chip por Deterioro
+                    <span>Reemplazo de chip por fallas o averías</span>
+                </button>
             </div>
         </div>
 
@@ -571,7 +577,7 @@
 
         const serviceDetails = {
             'Instalación de GLP / GNV': 'Convertimos tu vehículo de gasolina a GLP o GNV utilizando equipos italianos de última generación. Nuestro proceso garantiza una instalación segura, un rendimiento óptimo y un ahorro significativo en combustible. Incluye la certificación inicial para que puedas circular sin problemas.<br><br>---<br><br><b>El servicio incluye:</b><br>- Kit de conversión completo (reductor, riel de inyectores, ECU, tanque).<br>- Instalación profesional por técnicos certificados.<br>- Calibración y ajuste por computadora.<br>- Certificado de conformidad inicial.',
-            'Programa FISE': 'El programa FISE (Fondo de Inclusión Social Energético) te permite financiar la conversión de tu vehículo a GNV (Gas Natural Vehicular) con un bono de descuento de S/ 1,000.00, sin cuota inicial y con un financiamiento sin intereses.<br><br>---<br><br><b>Requisitos para acceder:</b><br>- DNI del propietario del vehículo.<br>- Tarjeta de propiedad del vehículo.<br>- El vehículo debe estar a tu nombre.<br>- El vehículo debe tener una antigüedad no mayor a 10 años.<br>- No tener deudas pendientes con el programa FISE.<br>- El vehículo debe estar en buen estado de funcionamiento.',
+            'Programa FISE': 'El programa FISE (Fondo de Inclusión Social Energético) te permite financiar la conversión de tu vehículo a GNV (Gas Natural Vehicular) con un bono de descuento de S/ 2,000.00, sin cuota inicial y con un financiamiento sin intereses.<br><br>---<br><br><b>Requisitos para acceder:</b><br>- DNI del propietario del vehículo.<br>- Tarjeta de propiedad del vehículo.<br>- El vehículo debe estar a tu nombre.<br>- El vehículo debe tener una antigüedad no mayor a 10 años.<br>- No tener deudas pendientes con el programa FISE.<br>- El vehículo debe estar en buen estado de funcionamiento.',
             'Mantenimiento GLP / GNV': 'Realizamos un chequeo completo de tu sistema de gas, incluyendo limpieza de componentes, verificación de fugas y ajuste de parámetros para garantizar un funcionamiento seguro y eficiente.<br><br>---<br><br><b>Se realizará:</b><br>- Limpieza de reductor.<br>- limpieza de riel de inyectores de gas.<br>- cambio de filtro de gas.<br>- Revisión de mangueras y conexiones.',
             'Regulación GLP / GNV': 'Utilizamos software especializado para regular la mezcla de aire y gas, optimizando el consumo de combustible y mejorando la potencia y respuesta de tu vehículo.<br><br>---<br><br><b>Se realizará:</b><br>- Conexión a la ECU de gas.<br>- Análisis de mapa de inyección.<br>- Ajuste de parámetros en tiempo real.<br>- Prueba de ruta para verificar rendimiento.',
             'Scaneo': 'Con nuestros scanners de última generación, diagnosticamos con precisión cualquier falla electrónica en el sistema de gas, motor, ABS, airbags y otros módulos del vehículo.<br><br>---<br><br><b>Se realizará:</b><br>- Lectura de códigos de error (DTC).<br>- Análisis de datos en vivo de sensores.<br>- Borrado de luz de "Check Engine".<br>- Reporte de fallas encontradas.',
@@ -582,7 +588,8 @@
             'Cambio de Aceite': 'Realizamos el cambio de aceite y filtro utilizando productos de alta calidad que cumplen con las especificaciones de tu vehículo, alargando la vida útil del motor.<br><br>---<br><br><b>Se realizará:</b><br>- Drenado de aceite usado.<br>- Reemplazo del filtro de aceite.<br>- Relleno con aceite nuevo según especificación.<br>- Reseteo de indicador de servicio (si aplica).',
             'Diagnóstico Computarizado': 'Conectamos tu vehículo a nuestros equipos de diagnóstico para leer códigos de falla, analizar datos en tiempo real y encontrar el origen de cualquier problema mecánico o electrónico.<br><br>---<br><br><b>Se realizará:</b><br>- Escaneo completo de todos los módulos.<br>- Interpretación de códigos de falla.<br>- Análisis de parámetros de funcionamiento.<br>- Entrega de informe detallado al cliente.',
             'Service Programado': 'Seguimos las pautas del fabricante para realizar el mantenimiento programado de tu vehículo, asegurando que todos los componentes funcionen correctamente y previniendo averías costosas.<br><br>---<br><br><b>Se realizará:</b><br>- Cambio de aceite y filtros (aire, aceite, combustible).<br>- Revisión de niveles de todos los fluidos.<br>- Inspección de frenos, suspensión y neumáticos.<br>- Chequeo general de luces y componentes eléctricos.',
-            'Análisis de Gases': 'Realizamos la medición de emisiones de gases contaminantes (monóxido de carbono, hidrocarburos, etc.) para asegurar que tu vehículo cumpla con las normativas ambientales y funcione de manera eficiente.<br><br>---<br><br><b>Se realizará:</b><br>- Medición con analizador de gases.<br>- Verificación de valores según normativa.<br>- Diagnóstico de posibles causas de altas emisiones.<br>- Entrega de reporte de resultados.'
+            'Análisis de Gases': 'Realizamos la medición de emisiones de gases contaminantes (monóxido de carbono, hidrocarburos, etc.) para asegurar que tu vehículo cumpla con las normativas ambientales y funcione de manera eficiente.<br><br>---<br><br><b>Se realizará:</b><br>- Medición con analizador de gases.<br>- Verificación de valores según normativa.<br>- Diagnóstico de posibles causas de altas emisiones.<br>- Entrega de reporte de resultados.',
+            'Chip por Deterioro': 'Si el chip de tu sistema de gas se ha dañado o presenta fallas, realizamos el cambio por uno nuevo. Este servicio es crucial cuando el chip original no puede ser reprogramado o está averiado, asegurando el correcto funcionamiento del sistema de conversión.<br><br>---<br><br><b>Se realizará:</b><br>- Diagnóstico para confirmar el daño del chip.<br>- Desmontaje del componente afectado.<br>- Instalación y configuración del nuevo chip.<br>- Pruebas de funcionamiento para garantizar la correcta operación.'
         };
 
         const modal = document.getElementById('service-modal');

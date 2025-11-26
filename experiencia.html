@@ -178,6 +178,15 @@
             color: #4CAF50;
         }
 
+        .delete-btn {
+            margin-left: auto; /* Empuja el botón de borrar a la derecha */
+        }
+
+        .delete-btn:hover {
+            color: #e74c3c; /* Rojo para acción de eliminar */
+        }
+
+
         /* Sección de respuestas */
         .replies-container {
             margin-top: 15px;
@@ -300,90 +309,156 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const postFeed = document.getElementById('postFeed');
-            const newPostForm = document.getElementById('newPostForm');
+    document.addEventListener('DOMContentLoaded', () => {
+        const postFeed = document.getElementById('postFeed');
+        const newPostForm = document.getElementById('newPostForm');
+        const storageKey = 'sngas_posts';
 
-            // Manejador para dar "Me gusta" y "Responder"
-            postFeed.addEventListener('click', (e) => {
-                // Lógica para el botón de "Me gusta"
-                if (e.target.closest('.like-btn')) {
-                    const likeBtn = e.target.closest('.like-btn');
-                    const likeCountSpan = likeBtn.querySelector('.like-count');
-                    let likeCount = parseInt(likeCountSpan.textContent);
-                    
-                    likeBtn.classList.toggle('active');
-                    if (likeBtn.classList.contains('active')) {
-                        likeCount++;
-                    } else {
-                        likeCount--;
-                    }
-                    likeCountSpan.textContent = likeCount;
-                }
+        // Cargar publicaciones desde localStorage
+        function loadPosts() {
+            const posts = JSON.parse(localStorage.getItem(storageKey)) || [];
+            // Limpiar el feed antes de cargar para evitar duplicados
+            postFeed.innerHTML = ''; 
+            // Cargar los posts de ejemplo si no hay ninguno guardado
+            if (posts.length === 0) {
+                const examplePosts = [
+                    { id: 'ex1', author: 'Carlos Solis', content: '¡Excelente servicio! Llevé mi auto para la conversión a GNV y el equipo fue súper profesional. Me explicaron todo el proceso y el auto quedó perfecto. ¡Recomendado al 100%!', likes: 15, replies: [] },
+                    { id: 'ex2', author: 'Maria Gomez', content: 'Muy contenta con el mantenimiento anual de mi sistema GLP. Fueron rápidos, eficientes y a un precio justo. El auto se siente como nuevo. ¡Gracias SNGAS!', likes: 8, replies: [] }
+                ];
+                localStorage.setItem(storageKey, JSON.stringify(examplePosts));
+                posts.push(...examplePosts);
+            }
 
-                // Lógica para el botón de "Responder"
-                if (e.target.closest('.reply-btn')) {
-                    const post = e.target.closest('.post');
-                    const repliesContainer = post.querySelector('.replies-container');
-                    repliesContainer.style.display = 'block';
+            posts.forEach(post => renderPost(post, false));
+        }
 
-                    // Evita añadir el formulario de respuesta si ya existe
-                    if (!repliesContainer.querySelector('.reply-form')) {
-                        const replyForm = document.createElement('form');
-                        replyForm.className = 'reply-form';
-                        replyForm.innerHTML = `
-                            <input type="text" placeholder="Escribe una respuesta..." required>
-                            <button type="submit">Responder</button>
-                        `;
-                        repliesContainer.appendChild(replyForm);
-                    }
-                }
+        // Guardar todas las publicaciones en localStorage
+        function savePosts(posts) {
+            localStorage.setItem(storageKey, JSON.stringify(posts));
+        }
+
+        // Obtener todas las publicaciones del DOM y convertirlas a un objeto de datos
+        function getPostsFromDOM() {
+            const postElements = document.querySelectorAll('.post');
+            const posts = [];
+            postElements.forEach(el => {
+                const id = el.dataset.id;
+                const author = el.querySelector('.post-author').textContent;
+                const content = el.querySelector('.post-content').textContent.trim();
+                const likes = parseInt(el.querySelector('.like-count').textContent);
+                const replyElements = el.querySelectorAll('.reply');
+                const replies = [];
+                replyElements.forEach(replyEl => {
+                    replies.push({
+                        author: replyEl.querySelector('strong').textContent.replace(':', ''),
+                        content: replyEl.querySelector('span').textContent
+                    });
+                });
+                posts.push({ id, author, content, likes, replies });
             });
+            return posts;
+        }
 
-            // Manejador para enviar una respuesta
-            postFeed.addEventListener('submit', (e) => {
-                if (e.target.classList.contains('reply-form')) {
-                    e.preventDefault();
-                    const input = e.target.querySelector('input');
-                    const repliesContainer = e.target.closest('.replies-container');
-                    
-                    const newReply = document.createElement('div');
-                    newReply.className = 'reply';
-                    newReply.innerHTML = `<p><strong>Anónimo:</strong> ${input.value}</p>`;
-                    
-                    repliesContainer.insertBefore(newReply, e.target);
-                    input.value = '';
+        // Renderizar una publicación en el DOM
+        function renderPost(postData, prepend = true) {
+            const postElement = document.createElement('div');
+            postElement.className = 'post';
+            postElement.dataset.id = postData.id;
+
+            let repliesHTML = '';
+            if (postData.replies) {
+                postData.replies.forEach(reply => {
+                    repliesHTML += `<div class="reply"><p><strong>${reply.author}:</strong> <span>${reply.content}</span></p></div>`;
+                });
+            }
+
+            postElement.innerHTML = `
+                <div class="post-header">
+                    <div class="post-avatar"><i class="fas fa-user"></i></div>
+                    <span class="post-author">${postData.author}</span>
+                </div>
+                <p class="post-content">${postData.content}</p>
+                <div class="post-actions">
+                    <button class="like-btn"><i class="fas fa-thumbs-up"></i> Me gusta (<span class="like-count">${postData.likes}</span>)</button>
+                    <button class="reply-btn"><i class="fas fa-comment"></i> Responder</button>
+                    <button class="delete-btn"><i class="fas fa-trash"></i> Borrar</button>
+                </div>
+                <div class="replies-container">${repliesHTML}</div>
+            `;
+
+            if (prepend) {
+                postFeed.prepend(postElement);
+            } else {
+                postFeed.appendChild(postElement);
+            }
+        }
+
+        // Manejador para acciones en las publicaciones (Me gusta, Responder, etc.)
+        postFeed.addEventListener('click', (e) => {
+            const likeBtn = e.target.closest('.like-btn');
+            const replyBtn = e.target.closest('.reply-btn');
+            const deleteBtn = e.target.closest('.delete-btn');
+
+            if (likeBtn) {
+                const likeCountSpan = likeBtn.querySelector('.like-count');
+                let likeCount = parseInt(likeCountSpan.textContent);
+                likeBtn.classList.toggle('active');
+                likeCount = likeBtn.classList.contains('active') ? likeCount + 1 : likeCount - 1;
+                likeCountSpan.textContent = likeCount;
+            } else if (replyBtn) {
+                const post = replyBtn.closest('.post');
+                const repliesContainer = post.querySelector('.replies-container');
+                repliesContainer.style.display = 'block';
+                if (!repliesContainer.querySelector('.reply-form')) {
+                    const replyForm = document.createElement('form');
+                    replyForm.className = 'reply-form';
+                    replyForm.innerHTML = `<input type="text" placeholder="Escribe una respuesta..." required><button type="submit">Responder</button>`;
+                    repliesContainer.appendChild(replyForm);
                 }
-            });
-
-            // Manejador para crear una nueva publicación
-            newPostForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const content = document.getElementById('postContent').value;
-                const author = document.getElementById('postAuthor').value;
-
-                const newPost = document.createElement('div');
-                newPost.className = 'post';
-                newPost.innerHTML = `
-                    <div class="post-header">
-                        <div class="post-avatar"><i class="fas fa-user"></i></div>
-                        <span class="post-author">${author}</span>
-                    </div>
-                    <p class="post-content">${content}</p>
-                    <div class="post-actions">
-                        <button class="like-btn"><i class="fas fa-thumbs-up"></i> Me gusta (<span class="like-count">0</span>)</button>
-                        <button class="reply-btn"><i class="fas fa-comment"></i> Responder</button>
-                    </div>
-                    <div class="replies-container"></div>
-                `;
-
-                postFeed.prepend(newPost);
-
-                // Limpiar formulario
-                document.getElementById('postContent').value = '';
-                document.getElementById('postAuthor').value = '';
-            });
+            } else if (deleteBtn) {
+                const postElement = deleteBtn.closest('.post');
+                if (postElement && confirm('¿Estás seguro de que quieres borrar esta publicación?')) {
+                    postElement.remove();
+                    savePosts(getPostsFromDOM());
+                }
+                return; // Evita que se guarde dos veces si se hace clic en borrar
+            }
+            // Guardar cambios para "Me gusta" y la aparición del formulario de respuesta
+            savePosts(getPostsFromDOM()); 
         });
+
+        // Manejador para enviar una respuesta
+        postFeed.addEventListener('submit', (e) => {
+            if (e.target.classList.contains('reply-form')) {
+                e.preventDefault();
+                const input = e.target.querySelector('input');
+                const newReply = document.createElement('div');
+                newReply.className = 'reply';
+                newReply.innerHTML = `<p><strong>Anónimo:</strong> <span>${input.value}</span></p>`;
+                e.target.parentNode.insertBefore(newReply, e.target);
+                input.value = '';
+                savePosts(getPostsFromDOM());
+            }
+        });
+
+        // Manejador para crear una nueva publicación
+        newPostForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newPostData = {
+                id: Date.now().toString(),
+                author: document.getElementById('postAuthor').value || 'Anónimo',
+                content: document.getElementById('postContent').value,
+                likes: 0,
+                replies: []
+            };
+            renderPost(newPostData, true);
+            savePosts(getPostsFromDOM());
+            newPostForm.reset();
+        });
+
+        // Carga inicial
+        loadPosts();
+    });
     </script>
 </body>
 </html>

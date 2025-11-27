@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SN'GAS Magazine - Ediciones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #4CAF50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #FFC107;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .editions-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .edition-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        .edition-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .edition-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .edition-item h3 {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #ecf0f1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SN'GAS Magazine</h1>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Inicio</a>
+        </header>
+
+        <main>
+            <div class="editions-gallery">
+                
+                <div class="edition-item">
+                    <img src="Gemini_Generated_Image_fci9xwfci9xwfci9.png" alt="Portada Revista Diciembre 2025">
+                    <h3>Edición Diciembre 2025</h3>
+                </div>
+
+                <div class="edition-item">
+                    <img src="Gemini_Generated_Image_chq1zochq1zochq1.png" alt="Portada Revista Enero 2026">
+                    <h3>Edición Enero 2026</h3>
+                </div>
+
+                <!-- Para futuras ediciones, copia y pega el bloque 'edition-item' y actualiza la imagen y el título -->
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>

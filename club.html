@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club SN'GAS - Beneficios Exclusivos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%); color: #fff; min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; padding: 30px 0; margin-bottom: 30px; background: rgba(0, 0, 0, 0.4); border-radius: 15px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
+        h1 { font-size: 42px; text-transform: uppercase; letter-spacing: 2px; color: #4CAF50; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+        .breadcrumb { margin-bottom: 30px; font-size: 16px; }
+        .breadcrumb a { color: #FFC107; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        
+        /* Estilos específicos del Club */
+        .club-hero {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+        .club-hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #ecf0f1;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .benefit-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .benefit-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.1); }
+        .benefit-icon { font-size: 50px; color: #FFC107; margin-bottom: 20px; }
+        .benefit-title { font-size: 24px; margin-bottom: 15px; color: #4CAF50; }
+        .benefit-desc { font-size: 16px; color: #ddd; line-height: 1.5; }
+
+        .levels-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+        }
+        .section-title { text-align: center; font-size: 32px; color: #FFC107; margin-bottom: 40px; text-transform: uppercase; }
+        
+        .level-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+        }
+        .level-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .level-icon { font-size: 40px; margin-right: 25px; width: 60px; text-align: center; }
+        .level-info h3 { font-size: 24px; color: #fff; margin-bottom: 8px; }
+        .level-info p { color: #ccc; font-size: 16px; }
+
+        .cta-section { text-align: center; margin-top: 40px; padding: 40px; background: linear-gradient(45deg, #4CAF50, #2E7D32); border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .cta-btn {
+            background: #fff; color: #2E7D32; padding: 15px 35px; border-radius: 30px; text-decoration: none; font-size: 20px; font-weight: bold; transition: transform 0.3s, box-shadow 0.3s; display: inline-block; margin-top: 20px;
+        }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+
+        footer { text-align: center; margin-top: 50px; padding: 20px; background: rgba(0, 0, 0, 0.4); border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-users"></i> Club SN'GAS</h1>
+        </header>
+        <div class="breadcrumb">
+            <a href="index.html">Inicio</a> &gt; Club SN'GAS
+        </div>
+
+        <div class="club-hero">
+            <h2 style="color: #FFC107; margin-bottom: 20px; font-size: 36px;">Bienvenido a la Familia</h2>
+            <p>El Club SN'GAS es nuestro programa de fidelización diseñado para recompensar tu preferencia. Acumula puntos (Monegas), accede a descuentos exclusivos y participa en eventos especiales diseñados solo para ti.</p>
+        </div>
+
+        <h2 class="section-title">Beneficios del Club</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fas fa-coins benefit-icon"></i>
+                <h3 class="benefit-title">Acumula Monegas</h3>
+                <p class="benefit-desc">Por cada servicio realizado en nuestro taller, acumulas "Monegas" que puedes canjear por productos, accesorios o descuentos en futuros mantenimientos.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-tags benefit-icon"></i>
+                <h3 class="benefit-title">Descuentos Exclusivos</h3>
+                <p class="benefit-desc">Accede a precios especiales en repuestos, aceites y servicios de mano de obra solo por ser miembro activo del club.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-ticket-alt benefit-icon"></i>
+                <h3 class="benefit-title">Sorteos Mensuales</h3>
+                <p class="benefit-desc">Participa automáticamente en nuestros sorteos mensuales de tanques llenos, kits de mantenimiento y revisiones gratuitas.</p>
+            </div>
+        </div>
+
+        <div class="levels-section">
+            <h2 class="section-title">Niveles de Membresía</h2>
+            <div class="level-item">
+                <div class="level-icon" style="color: #cd7f32;"><i class="fas fa-medal"></i></div>
+                <div class="level-info">
+                    <h3>Socio Bronce</h3>
+                    <p>Nivel inicial al registrarte. Acumula <strong>1 Monega</strong> por cada S/ 10 de consumo en servicios.</p>
+                </div>
+            </div>
+            <div class="level-item">
+                <div class="level-icon" style="color: #c0c0c0;"><i class="fas fa-medal"></i></div>
+                <div class="level-info">
+                    <h3>Socio Plata</h3>
+                    <p>Al acumular 500 Monegas. Acumula <strong>1.5 Monegas</strong> por cada S/ 10 y obtén <strong>5% de dscto.</strong> en mano de obra.</p>
+                </div>
+            </div>
+            <div class="level-item">
+                <div class="level-icon" style="color: #FFD700;"><i class="fas fa-crown"></i></div>
+                <div class="level-info">
+                    <h3>Socio Oro</h3>
+                    <p>Al acumular 1500 Monegas. Acumula <strong>2 Monegas</strong> por cada S/ 10, <strong>10% de dscto.</strong> y atención preferencial sin cola.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 style="font-size: 28px; margin-bottom: 15px;">¿Ya eres socio?</h2>
+            <p style="font-size: 18px;">Consulta tu estado actual, nivel de socio y puntos acumulados ingresando tu placa.</p>
+            <a href="placas.html" class="cta-btn"><i class="fas fa-search"></i> Consultar Mis Puntos</a>
+        </div>
+
+        <footer>
+            <p>Automotriz SNGAS &copy; 2025 - Confianza sobre ruedas</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -45,66 +45,6 @@
             margin-top: 10px;
         }
 
-        /* --- Barra de Búsqueda --- */
-        .search-container {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-        }
-
-        .search-box {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .search-box i {
-            font-size: 20px;
-            color: #FFC107;
-            margin-right: 10px;
-        }
-
-        .search-input-wrapper {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 5px 15px;
-        }
-
-        #searchInput {
-            width: 100%;
-            padding: 15px 10px;
-            border: none;
-            background: transparent;
-            color: #fff;
-            font-size: 18px;
-            outline: none;
-        }
-
-        #searchInput::placeholder {
-            color: #bdc3c7;
-        }
-
-        .search-btn {
-            background: #FFC107;
-            color: #0d47a1;
-            border: none;
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .search-btn:hover {
-            background: #ffca28;
-        }
-
         /* --- Footer --- */
         footer {
             text-align: center;
@@ -168,106 +108,8 @@
             <p class="tagline">Encuentra rápidamente la información de un vehículo.</p>
         </header>
 
-        <div class="search-container">
-            <form id="socioSearchForm" class="search-box">
-                <div class="search-input-wrapper">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar por placa, nombre o socio..." required>
-                </div>
-                <button type="submit" class="search-btn">Buscar</button>
-            </form>
-        </div>
-
         <div class="quick-access-container">
-             <button class="quick-access-btn" onclick="window.location.href='B3Y-611.html'" data-search="B3Y-611 CARLOS SOLIS 101">
-                <i class="fas fa-star"></i>
-                <span class="placa">B3Y-611</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='ABC-123.html'" data-search="ABC-123 ANA FUENTES 102">
-                <i class="fas fa-star"></i>
-                <span class="placa">ABC-123</span>
-            </button>
-            <!-- 20 nuevas opciones -->
-            <button class="quick-access-btn" onclick="window.location.href='F8L-492.html'" data-search="F8L-492 LUIS ROJAS 201">
-                <i class="fas fa-star"></i>
-                <span class="placa">F8L-492</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='G2P-715.html'" data-search="G2P-715 MARIA GOMEZ 202">
-                <i class="fas fa-star"></i>
-                <span class="placa">G2P-715</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='K9R-301.html'" data-search="K9R-301 PEDRO CASTRO 203">
-                <i class="fas fa-star"></i>
-                <span class="placa">K9R-301</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='M4S-882.html'" data-search="M4S-882 SOFIA DIAZ 204">
-                <i class="fas fa-star"></i>
-                <span class="placa">M4S-882</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='N1T-654.html'" data-search="N1T-654 JAVIER LUNA 205">
-                <i class="fas fa-star"></i>
-                <span class="placa">N1T-654</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='P6V-123.html'" data-search="P6V-123 LAURA TORRES 206">
-                <i class="fas fa-star"></i>
-                <span class="placa">P6V-123</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='Q3W-987.html'" data-search="Q3W-987 DIEGO VERA 207">
-                <i class="fas fa-star"></i>
-                <span class="placa">Q3W-987</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='R8X-456.html'" data-search="R8X-456 CARMEN RUIZ 208">
-                <i class="fas fa-star"></i>
-                <span class="placa">R8X-456</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='S5Y-789.html'" data-search="S5Y-789 JORGE SANTOS 209">
-                <i class="fas fa-star"></i>
-                <span class="placa">S5Y-789</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='T2Z-012.html'" data-search="T2Z-012 ELENA FLORES 210">
-                <i class="fas fa-star"></i>
-                <span class="placa">T2Z-012</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='V7A-345.html'" data-search="V7A-345 RICARDO PEÑA 211">
-                <i class="fas fa-star"></i>
-                <span class="placa">V7A-345</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='W4B-678.html'" data-search="W4B-678 MONICA SALAS 212">
-                <i class="fas fa-star"></i>
-                <span class="placa">W4B-678</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='X9C-901.html'" data-search="X9C-901 FERNANDO GIL 213">
-                <i class="fas fa-star"></i>
-                <span class="placa">X9C-901</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='Y1D-234.html'" data-search="Y1D-234 ROSA MENDOZA 214">
-                <i class="fas fa-star"></i>
-                <span class="placa">Y1D-234</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='Z6E-567.html'" data-search="Z6E-567 HECTOR RIOS 215">
-                <i class="fas fa-star"></i>
-                <span class="placa">Z6E-567</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='A3F-890.html'" data-search="A3F-890 IRENE SOTO 216">
-                <i class="fas fa-star"></i>
-                <span class="placa">A3F-890</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='B8G-123.html'" data-search="B8G-123 OSCAR VEGA 217">
-                <i class="fas fa-star"></i>
-                <span class="placa">B8G-123</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='C5H-456.html'" data-search="C5H-456 SILVIA CRUZ 218">
-                <i class="fas fa-star"></i>
-                <span class="placa">C5H-456</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='D2J-789.html'" data-search="D2J-789 DANIEL MORA 219">
-                <i class="fas fa-star"></i>
-                <span class="placa">D2J-789</span>
-            </button>
-            <button class="quick-access-btn" onclick="window.location.href='E7K-012.html'" data-search="E7K-012 GLORIA REYES 220">
-                <i class="fas fa-star"></i>
-                <span class="placa">E7K-012</span>
-            </button>
+            <!-- Los botones se generarán dinámicamente con JavaScript -->
         </div>
 
         <footer>
@@ -276,38 +118,84 @@
     </div>
 
     <script>
-        const searchForm = document.getElementById('socioSearchForm');
-        const searchInput = document.getElementById('searchInput');
-        const partnerButtons = document.querySelectorAll('.quick-access-btn');
+        let sociosData = [
+            { placa: "ABC-123", nombre: "NUEVO SOCIO", id: "1001" },
+            { placa: "ABC-234", nombre: "NUEVO SOCIO", id: "1002" },
+            { placa: "BPK-176", nombre: "NUEVO SOCIO", id: "1003" },
+            { placa: "CBV-585", nombre: "NUEVO SOCIO", id: "1004" },
+            { placa: "CFM-502", nombre: "NUEVO SOCIO", id: "1005" },
+            { placa: "BEK-063", nombre: "NUEVO SOCIO", id: "1006" },
+            { placa: "BTZ-643", nombre: "NUEVO SOCIO", id: "1007" },
+            { placa: "V8Y-630", nombre: "NUEVO SOCIO", id: "1008" },
+            { placa: "CLW-268", nombre: "NUEVO SOCIO", id: "1009" },
+            { placa: "AVP-045", nombre: "NUEVO SOCIO", id: "1010" },
+            { placa: "Y2F-119", nombre: "NUEVO SOCIO", id: "1011" },
+            { placa: "CPG-301", nombre: "NUEVO SOCIO", id: "1012" },
+            { placa: "BYY-691", nombre: "NUEVO SOCIO", id: "1013" },
+            { placa: "CML-567", nombre: "NUEVO SOCIO", id: "1014" },
+            { placa: "CVY-080", nombre: "NUEVO SOCIO", id: "1015" },
+            { placa: "BRF-005", nombre: "NUEVO SOCIO", id: "1016" },
+            { placa: "AYY-822", nombre: "NUEVO SOCIO", id: "1017" },
+            { placa: "CFR-445", nombre: "NUEVO SOCIO", id: "1018" },
+            { placa: "CHS-132", nombre: "NUEVO SOCIO", id: "1019" },
+            { placa: "BUU-336", nombre: "NUEVO SOCIO", id: "1020" },
+            { placa: "BVH-343", nombre: "NUEVO SOCIO", id: "1021" },
+            { placa: "CNH-208", nombre: "NUEVO SOCIO", id: "1022" },
+            { placa: "BAB-131", nombre: "NUEVO SOCIO", id: "1023" },
+            { placa: "BZF-491", nombre: "NUEVO SOCIO", id: "1024" },
+            { placa: "AUX-196", nombre: "NUEVO SOCIO", id: "1025" },
+            { placa: "BTB-220", nombre: "NUEVO SOCIO", id: "1026" },
+            { placa: "CMW-359", nombre: "NUEVO SOCIO", id: "1027" },
+            { placa: "CBY-549", nombre: "NUEVO SOCIO", id: "1028" }
+        ];
 
-        function filterPartners() {
-            const searchTerm = searchInput.value.trim().toUpperCase();
+        const container = document.querySelector('.quick-access-container');
 
-            partnerButtons.forEach(button => {
-                const buttonData = button.getAttribute('data-search').toUpperCase();
-                
-                if (buttonData.includes(searchTerm)) {
-                    button.classList.remove('hidden');
-                } else {
-                    button.classList.add('hidden');
-                }
+        function renderButtons(socios, searchTerm) {
+            container.innerHTML = ''; // Limpiar contenedor
+            if (socios.length === 0 && searchTerm.trim() !== '') {
+                container.innerHTML = `<p style="color: #ccc;">No se encontraron resultados para "${searchTerm}".</p>`;
+                return;
+            }
+            if (socios.length === 0 && searchTerm.trim() === '') {
+                 container.innerHTML = '<p style="color: #ccc;">No hay socios para mostrar. Comience una búsqueda en la página principal.</p>';
+                 return;
+            }
+
+            socios.forEach(socio => {
+                const btn = document.createElement('button');
+                btn.className = 'quick-access-btn';
+                btn.onclick = () => window.location.href = `${socio.placa}.html`;
+                btn.innerHTML = `
+                    <i class="fas fa-star"></i>
+                    <span class="placa">${socio.placa}</span>
+                `;
+                container.appendChild(btn);
             });
         }
 
-        // Filtrar en tiempo real mientras se escribe
-        searchInput.addEventListener('input', filterPartners);
+        function handleSearch(searchTerm) {
+            const upperSearchTerm = searchTerm.trim().toUpperCase();
+            
+            const filteredSocios = sociosData.filter(socio => {
+                if (upperSearchTerm === '') return true;
+                const searchData = `${socio.placa} ${socio.nombre} ${socio.id}`.toUpperCase();
+                return searchData.includes(upperSearchTerm);
+            });
 
-        // Evitar que el formulario recargue la página al presionar Enter
-        searchForm.addEventListener('submit', (event) => event.preventDefault());
+            // Si hay exactamente un resultado y la búsqueda no está vacía, redirigir
+            if (filteredSocios.length === 1) {
+                window.location.href = `${filteredSocios[0].placa}.html`;
+                return;
+            }
 
-        // Al cargar la página, revisa si viene una placa en la URL
+            renderButtons(filteredSocios, searchTerm);
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const placa = urlParams.get('placa');
-            if (placa) {
-                searchInput.value = placa;
-                filterPartners(); // Filtra automáticamente al cargar
-            }
+            const placa = urlParams.get('placa') || '';
+            handleSearch(placa);
         });
     </script>
 </body>

@@ -130,43 +130,88 @@
             margin-bottom: 15px;
         }
 
-        /* --- Contenedor de Búsqueda Principal --- */
-        .main-search-container {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
+        /* --- Barra de Búsqueda Estilizada --- */
+        .search-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             text-align: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .main-search-container .partner-search-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .partner-search-form {
+        .search-box {
             display: flex;
-            width: 80%;
-            max-width: 300px;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
-        .partner-search-form input {
+        .search-input-wrapper {
             flex-grow: 1;
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50px; /* Forma de píldora */
+            padding: 5px 20px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .search-input-wrapper:focus-within {
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.5); /* Efecto de brillo */
+        }
+
+        .search-input-wrapper i {
+            font-size: 20px;
+            color: #FFC107;
+            margin-right: 15px;
+        }
+
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 15px 0;
             border: none;
-            padding: 12px;
-            border-radius: 8px 0 0 8px;
+            background: transparent;
+            color: #fff;
+            font-size: 18px;
             outline: none;
         }
 
-        .partner-search-form button {
-            border: none;
-            padding: 0 15px;
-            background: #FFC107;
+        .search-input-wrapper input::placeholder {
+            color: #e0e0e0;
+        }
+
+        .search-btn {
+            background: linear-gradient(45deg, #FFC107, #FF9800);
             color: #0d47a1;
-            border-radius: 0 8px 8px 0;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
             cursor: pointer;
-            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            white-space: nowrap;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4);
+        }
+        
+        .search-btn:active {
+            transform: translateY(1px);
         }
 
         .discount-badge {
@@ -422,6 +467,19 @@
             }
         }
 
+        /* --- Banner San Valentín --- */
+        .valentines-banner {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .valentines-banner img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid #e91e63; /* Color temático San Valentín */
+        }
+
     </style>
 </head>
 <body>
@@ -444,11 +502,14 @@
             </div>
         </header>
 
-        <div class="main-search-container">
-            <h2 style="color: #FFC107; margin-bottom: 15px; font-size: 24px;"><i class="fas fa-search"></i> Consulta de Socio</h2>
-            <form class="partner-search-form" onsubmit="searchPartner(event)">
-                <input type="text" id="partnerIdInput" placeholder="Ingresa tu placa para consultar estado...">
-                <button type="submit"><i class="fas fa-search"></i></button>
+        <div class="search-container">
+            <h2 style="color: #FFC107; margin-bottom: 15px; font-size: 24px; text-align: center;"><i class="fas fa-search"></i> Consulta de Socio</h2>
+            <form id="mainSocioSearchForm" class="search-box">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-car"></i>
+                    <input type="text" id="mainSearchInput" placeholder="Ingresa tu placa para consultar estado..." required>
+                </div>
+                <button type="submit" class="search-btn">Buscar</button>
             </form>
         </div>
 
@@ -657,14 +718,15 @@
             setTimeout(typeWriter, 500);
         });
 
-        function searchPartner(event) {
+        // --- Lógica de la Barra de Búsqueda Principal ---
+        const mainSearchForm = document.getElementById('mainSocioSearchForm');
+        mainSearchForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            const partnerId = document.getElementById('partnerIdInput').value;
-            // Redirige a la página de búsqueda de placas con el término como parámetro
-            if (partnerId) {
-                window.location.href = `placas.html?placa=${encodeURIComponent(partnerId)}`;
+            const searchTerm = document.getElementById('mainSearchInput').value;
+            if (searchTerm) {
+                window.location.href = `placas.html?placa=${encodeURIComponent(searchTerm)}`;
             }
-        }
+        });
 
     </script>
 </body>
